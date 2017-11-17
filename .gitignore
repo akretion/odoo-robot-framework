@@ -1,1 +1,3 @@
 .idea
+# compiled python files
+*.py[co]
