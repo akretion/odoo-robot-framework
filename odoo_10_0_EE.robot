@@ -5,8 +5,7 @@ Documentation  Common keywords for OpenERP tests
 ...	is imported based on ${SUT} variable. SeleniumLibrary is also
 ...	imported here so that no other file needs to import it.
 Library	    ExtendedSelenium2Library
-Library  	String
-Library     connection_erp.py
+Library   	String
 Library     Collections
 #Library     XvfbRobot
 
@@ -85,14 +84,14 @@ SubMenuXMLid    [Arguments]		${Name}
     ${SubMenuID}=		    get_menu_res_id	${ODOO_URL_DB}	${ODOO_DB}	${USER}	${PASSWORD}	${MODULE}	${NAME}
     Run Keyword If          ${SubMenuID}               SubMenu         ${SubMenuID}
     Run Keyword Unless      ${SubMenuID}        Fail    ERROR: Module or Name not correct
-   
+
 MainMenuXMLid    [Arguments]    ${Name}
 	${MODULE}=              Fetch From Left            ${Name}              .
     ${NAME}=                Fetch From Right           ${Name}              .
     ${MainMenuID}=		    get_menu_res_id	${ODOO_URL_DB}	${ODOO_DB}	${USER}	${PASSWORD}	${MODULE}	${NAME}
     Run Keyword If          ${MainMenuID}               MainMenu         ${MainMenuID}
     Run Keyword Unless      ${MainMenuID}        Fail    ERROR: Module or Name not correct
-    
+
 SubSubMenuXMLid    [Arguments]    ${Name}
     ${MODULE}=              Fetch From Left            ${Name}              .
     ${NAME}=                Fetch From Right           ${Name}              .
@@ -121,7 +120,7 @@ SelectNotebook	[Arguments]	${element}
 # ok: 90EE
 IsModal
 	# Check if modal is open
-	Set Selenium Implicit Wait	1s	
+	Set Selenium Implicit Wait	1s
 	${modal}	${message}=		Run Keyword And Ignore Error	Element Should Be Visible	xpath=//div[contains(@class,'modal')]
 	#Page should Contain Element	xpath=//div[contains(@class,'modal')]
 	Set Selenium Implicit Wait	${SELENIUM_TIMEOUT}
@@ -175,7 +174,7 @@ Many2OneSelect	[Arguments]	${model}	${field}	${value}
 	Modal	Input Text	xpath=//input[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${field}']	value=${value}
 	Click Link	xpath=//ul[contains(@class,'ui-autocomplete') and not(contains(@style,'display: none'))]/li[1]/a
 	ElementPostCheck
-	
+
 Many2OneSelectWizard	[Arguments]	${model}	${field}	${value}
 	SelectNotebook	xpath=//input[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${field}']
 	Input Text	xpath=//div[contains(@div,modal)]//input[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${field}']	${value}
@@ -210,7 +209,7 @@ Char	[Arguments]	${model}	${field}	${value}
 	Modal	Clear Element Text	xpath=//input[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${field}']
 	Modal	Input Text	xpath=//input[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${field}']	value=${value}
 	ElementPostCheck
-	
+
 # ok: 9.0EE
 CharWizard	[Arguments]	${model}	${field}	${value}
 	SelectNotebook	xpath=//input[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${field}']
@@ -244,7 +243,7 @@ Text	[Arguments]	${model}	${field}	${value}
 	SelectNotebook	xpath=//textarea[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${field}']
 	Modal	Input Text	xpath=//textarea[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${field}']	value=${value}
 	ElementPostCheck
-	
+
 TextWizard	[Arguments]	${model}	${field}	${value}
 	SelectNotebook	xpath=//textarea[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${field}']
 	Input Text	xpath=//textarea[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${field}']	${value}
@@ -256,7 +255,7 @@ X2Many-Text	[Arguments]	${model}	${field}	${value}
 	Modal	Input Text	xpath=//textarea[ancestor::div[contains(@class, 'o_view_manager_content') and contains(@class, 'o_form_field') and descendant::div[@data-bt-testing-model_name='${model}']] and @data-bt-testing-name='${field}']	value=${value}
 	ElementPostCheck
 
-Select-Option	[Arguments]	${model}	${field}	${value}	
+Select-Option	[Arguments]	${model}	${field}	${value}
 	SelectNotebook	xpath=//select[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${field}']
 	#Modal	Select From List By Value	xpath=//select[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${field}']	value=${value}
 	#SelectNotebook	xpath=//select[@id='${model}' and @name='${field}']
@@ -379,11 +378,11 @@ MainWindowSearchTextField   [Arguments]	${field}	${value}
 	ElementPostCheck
 
 MainWindowSearchNow
-	
+
 MainWindowMany2One	[Arguments]	${field}	${value}
 	Click Element	xpath=//td[contains(@class, 'view-manager-main-content')]//input[@name='${field}']  don't wait
 	Input Text	xpath=//td[contains(@class, 'view-manager-main-content')]//input[@name='${field}']	${value}
 	Click Element	xpath=//td[contains(@class, 'view-manager-main-content')]//input[@name='${field}']/following-sibling::span[contains(@class, 'oe-m2o-drop-down-button')]/img don't wait
 	Click Link	xpath=//ul[contains(@class, 'ui-autocomplete') and not(contains(@style, 'display: none'))]//a[self::*/text()='${value}']	don't wait
 	ElementPostCheck
-	
+
