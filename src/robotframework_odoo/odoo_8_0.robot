@@ -26,7 +26,7 @@ Set Up
 Login    [Arguments]    ${user}=${USER}    ${password}=${PASSWORD}    ${db}=${ODOO_DB}
     Set Global Variable     ${ODOO_URL_DB}     http://${SERVER}:${ODOO_PORT}
     Open Browser                        ${ODOO_URL_DB}  browser=${BROWSER}
-    Maximize Browser Window
+#    Maximize Browser Window
     Go To                               ${ODOO_URL_DB}
     Set Selenium Speed                  ${SELENIUM_DELAY}
     Set Selenium Timeout                ${SELENIUM_TIMEOUT}

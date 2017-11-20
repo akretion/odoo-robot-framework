@@ -34,7 +34,7 @@ sidebaraction     [Arguments]	${action}
 # checked: 9.0 ok
 Login    [Arguments]    ${user}=${USER}    ${password}=${PASSWORD}    ${db}=${ODOO_DB}
 	Open Browser	${ODOO URL}  browser=${BROWSER}
-	Maximize Browser Window
+#	Maximize Browser Window
 	Go To                           ${ODOO URL}
 	Set Selenium Speed	            ${SELENIUM_DELAY}
 	Set Selenium Timeout	        ${SELENIUM_TIMEOUT}
