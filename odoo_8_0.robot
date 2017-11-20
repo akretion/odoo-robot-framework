@@ -50,7 +50,7 @@ DatabaseDisconnect
 # checked: 8.0 ok
 MainMenu    [Arguments]    ${menu}
     Click Link				xpath=//div[@id='oe_main_menu_placeholder']/ul/li/a[@data-menu='${menu}']
-    Wait Until Page Contains Element	xpath=//div[contains(@class, 'oe_secondary_menus_container')]/div[contains(@class, 'oe_secondary_menu') and not(contains(@style, 'display: none'))]	
+    Wait Until Page Contains Element	xpath=//div[contains(@class, 'oe_secondary_menus_container')]/div[contains(@class, 'oe_secondary_menu') and not(contains(@style, 'display: none'))]
     ElementPostCheck
 
 # checked: 8.0 ok
@@ -58,13 +58,25 @@ SubMenu    [Arguments]    ${menu}
     Click Link				xpath=//td[contains(@class,'oe_leftbar')]//ul/li/a[@data-menu='${menu}']
     Wait Until Page Contains Element	xpath=//div[contains(@class,'oe_view_manager_body')]
 
+# checked: 8.0 ok
+MainMenuText    [Arguments]    ${menu}
+    Click Link				xpath=//div[@id='oe_main_menu_placeholder']/ul/li/a[descendant::span/text()[normalize-space()='${menu}']]
+    Wait Until Page Contains Element	xpath=//div[contains(@class, 'oe_secondary_menus_container')]/div[contains(@class, 'oe_secondary_menu') and not(contains(@style, 'display: none'))]
+    ElementPostCheck
+
+# checked: 8.0 ok
+SubMenuText    [Arguments]    ${menu}
+    Click Link				xpath=//td[contains(@class,'oe_leftbar')]//ul/li/a[descendant::span/text()[normalize-space()='${menu}']]
+    Wait Until Page Contains Element	xpath=//div[contains(@class,'oe_view_manager_body')]
+    Sleep    1s
+
 SubMenuXMLid    [Arguments]		${Name}
     ${MODULE}=              Fetch From Left            ${Name}              .
     ${NAME}=                Fetch From Right           ${Name}              .
     ${SubMenuID}=		    get_menu_res_id	${ODOO_URL_DB}	${ODOO_DB}	${USER}	${PASSWORD}	${MODULE}	${NAME}
     Run Keyword If          ${SubMenuID}               SubMenu         ${SubMenuID}
     Run Keyword Unless          ${SubMenuID}        Fail    ERROR: Module or Name not correct
-   
+
 MainMenuXMLid    [Arguments]    ${Name}
     ${MODULE}=              Fetch From Left            ${Name}              .
     ${NAME}=                Fetch From Right           ${Name}              .
@@ -154,7 +166,7 @@ Text    [Arguments]    ${model}    ${field}    ${value}
     Input Text             xpath=//div[contains(@class,'openerp')][last()]//textarea[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${field}']    ${value}
     ElementPostCheck
 
-Select-Option    [Arguments]    ${model}    ${field}    ${value}    
+Select-Option    [Arguments]    ${model}    ${field}    ${value}
     ElementPreCheck        xpath=//div[contains(@class,'openerp')][last()]//select[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${field}']
     #Select From List	xpath=//div[contains(@class,'openerp')][last()]//select[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${field}']    ${value}
     click element       xpath=//div[contains(@class,'openerp')][last()]//select[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${field}']
@@ -260,14 +272,14 @@ MainWindowSearchTextField   [Arguments]     ${field}    ${value}
     ElementPostCheck
 
 MainWindowSearchNow
-    
+
 MainWindowMany2One          [Arguments]     ${field}    ${value}
     Click Element           xpath=//td[contains(@class, 'view-manager-main-content')]//input[@name='${field}']  don't wait
     Input Text              xpath=//td[contains(@class, 'view-manager-main-content')]//input[@name='${field}']      ${value}
     Click Element           xpath=//td[contains(@class, 'view-manager-main-content')]//input[@name='${field}']/following-sibling::span[contains(@class, 'oe-m2o-drop-down-button')]/img don't wait
     Click Link              xpath=//ul[contains(@class, 'ui-autocomplete') and not(contains(@style, 'display: none'))]//a[self::*/text()='${value}']    don't wait
     ElementPostCheck
-    
+
 new date        [Arguments]    ${model}    ${field}     ${day}   ${month}    ${year}
     Click Element        xpath=//div[contains(@class,'openerp')][last()]//img[ancestor::span[descendant::input[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${field}']] and @class="oe_input_icon oe_datepicker_trigger"]
     ${month}=   Evaluate        str(${month}-${1})
