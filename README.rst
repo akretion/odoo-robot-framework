@@ -6,7 +6,7 @@ Odoo keyword library for Robot Framework
 It allows to play back Odoo browser based acceptance tests that are
 
 * either written manually according to http://robotframework.org and this keyword library
-* either recorded with modified Selenium plugin https://github.com/brain-tec/se-builder
+* either recorded with modified Selenium plugin https://github.com/brain-tec/selenium-builder
 
 Installation
 ============
@@ -24,6 +24,16 @@ directory where you will be running the tests (you shouldn't, it is just for the
 
   export PATH=$PATH:.
 
+
+To install the modified Selenium Builder plugin for Firefox, on Ubuntu you would typically do
+
+.. code-block:: bash
+
+  git clone https://github.com/brain-tec/selenium-builder.git
+  cp -r selenium-builder/seleniumbuilder ~/.mozilla/firefox/ygjxofz4.default/extensions/seleniumbuilder@sebuilder.com
+
+Then restart Firefox, ensure the add-on is enabled (possibly enable non signed addons in the settings).
+Finally start the plugin with Tools>Web Developer>Launch Selenium Builder
 
 Usage
 =====
