@@ -111,6 +111,9 @@ WriteInField                [Arguments]     ${model}    ${fieldname}    ${value}
     ElementPreCheck         xpath=//div[contains(@class,'openerp')][last()]//input[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${fieldname}']|textarea[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${fieldname}']
     Input Text              xpath=//div[contains(@class,'openerp')][last()]//input[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${fieldname}']|textarea[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${fieldname}']    ${value}
 
+Radio      [Arguments]   ${model}  ${field}  ${value}
+    Click Element  xpath=//input[@data-bt-testing-model_name='${model}' and @data-bt-testing-name='${field}' and @value='${value}']
+
 # checked: 8.0 ok
 Button     [Arguments]   ${model}=	${button_name}=	${class}=
     #Wait Until Page Contains Element	xpath=//div[contains(@class,'oe_pager_value')]
