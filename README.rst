@@ -24,16 +24,29 @@ directory where you will be running the tests (you shouldn't, it is just for the
 
   export PATH=$PATH:.
 
+If you want to record tests with Selenium, there is a modified plugin version for Odoo.
+In fact, there is a legacy Selenium plugin called se-builder and a new Selenium plugin called selenium-builder
+and for each version there is a modified BrainTec fork. However it seems that for Odoo 8.0 at least only
+the old se-builder plugin works. I'm not sure what is the correct one for the newest Odoo versions.
 
 To install the modified Selenium Builder plugin for Firefox, on Ubuntu you would typically do
 
 .. code-block:: bash
 
-  git clone https://github.com/brain-tec/selenium-builder.git
-  cp -r selenium-builder/seleniumbuilder ~/.mozilla/firefox/ygjxofz4.default/extensions/seleniumbuilder@sebuilder.com
+  git clone https://github.com/brain-tec/se-builder.git
+  PROFILE=$(cat ~/.mozilla/firefox/profiles.ini | grep Path | tr "=" "\n" | tail -n1)
+  cp -r se-builder/seleniumbuilder ~/.mozilla/firefox/$PROFILE/extensions/seleniumbuilder@saucelabs.com
 
-Then restart Firefox, ensure the add-on is enabled (possibly enable non signed addons in the settings).
-Finally start the plugin with Tools>Web Developer>Launch Selenium Builder
+If you use the selenium-builder newer plugin instead (incompatible with Odoo 8.0), it should be instead:
+
+.. code-block:: bash
+
+  git clone https://github.com/brain-tec/selenium-builder.git
+  PROFILE=$(cat ~/.mozilla/firefox/profiles.ini | grep Path | tr "=" "\n" | tail -n1)
+  cp -r se-builder/seleniumbuilder ~/.mozilla/firefox/$PROFILE/extensions/seleniumbuilder@sebuilder.com
+
+Then restart Firefox (starting it from the terminal will help you to troubleshoot issues), ensure the add-on is enabled (possibly enable non signed addons in the settings).
+Finally start the plugin with Tools>Web Developer>Launch Selenium Builder.
 
 Usage
 =====
