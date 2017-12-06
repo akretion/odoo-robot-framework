@@ -11,11 +11,18 @@ It allows to play back Odoo browser based acceptance tests that are
 Installation
 ============
 
+odoo-robot-framework
+~~~~~~~~~~~~~~~~~~~~
+
 .. code-block:: bash
 
   sudo pip install git+https://github.com/akretion/odoo-robot-framework.git
 
-Also download Geckodriver (Firefox for Selenium) from https://github.com/mozilla/geckodriver/releases
+
+Firefox Selenium Driver
+~~~~~~~~~~~~~~~~~~~~~~~
+
+To replay the tests you should also download Geckodriver (Firefox for Selenium) from https://github.com/mozilla/geckodriver/releases
 This is **very important**: in same process or shell where you will be running the tests next, export a new PATH
 that will include the geckodriver executable. For instance with if you put geckdriver in the same
 directory where you will be running the tests (you shouldn't, it is just for the example):
@@ -23,6 +30,10 @@ directory where you will be running the tests (you shouldn't, it is just for the
 .. code-block:: bash
 
   export PATH=$PATH:.
+
+
+Modified Selenium Plugin
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you want to record tests with Selenium, there is a modified plugin version for Odoo.
 In fact, there is a legacy Selenium plugin called se-builder and a new Selenium plugin called selenium-builder
@@ -47,6 +58,18 @@ If you use the selenium-builder newer plugin instead (incompatible with Odoo 8.0
 
 Then restart Firefox (starting it from the terminal will help you to troubleshoot issues), ensure the add-on is enabled (possibly enable non signed addons in the settings).
 Finally start the plugin with Tools>Web Developer>Launch Selenium Builder.
+
+
+Web Odoo module
+~~~~~~~~~~~~~~~
+
+By default Selenium is unable to properly match HTML elements in Odoo forms. To make this possible you should install this Odoo module in your database. This is required both
+to record tests with Selenium and to replay the tests.
+
+.. code-block:: bash
+
+   https://github.com/brain-tec/web_selenium
+
 
 Usage
 =====
