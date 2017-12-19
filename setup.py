@@ -8,6 +8,7 @@ PY3 = sys.version_info[0] == 3
 install_requires = [
         "setuptools",
         "robotframework-selenium2library",
+        "robotframework-extendedselenium2library",
         "robotframework-databaselibrary",
         "psycopg2",
     ]
