@@ -40,7 +40,7 @@ Login    [Arguments]    ${user}=${USER}    ${password}=${PASSWORD}    ${db}=${OD
     Wait Until Page Contains Element    xpath=//div[@id='oe_main_menu_placeholder']/ul/li/a/span
 
 # checked: 8.0 ok
-DatabaseConnect    [Arguments]    ${odoo_db}=${ODOO_DB}    ${odoo_db_user}=${ODOO_DB_USER}    ${odoo_db_password}=${ODOO_DB_PASSWORD}    ${odoo_db_server}=${SERVER}    ${odoo_db_port}=${ODOO_DB_PORT}
+DatabaseConnect    [Arguments]    ${odoo_db}=${ODOO_DB}    ${odoo_db_user}=${ODOO_DB_USER}    ${odoo_db_password}=${ODOO_DB_PASSWORD}    ${odoo_db_server}=${ODOO_DB_SERVER}    ${odoo_db_port}=${ODOO_DB_PORT}
     Connect To Database Using Custom Params	psycopg2        database='${odoo_db}',user='${odoo_db_user}',password='${odoo_db_password}',host='${odoo_db_server}',port=${odoo_db_port}
 
 # checked: 8.0 ok
